@@ -1,5 +1,6 @@
 import "./App.scss";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import * as bootstrap from "bootstrap";
 import CallToAction from "./pages/CallToAction/CallToAction";
 import Data from "./pages/Data/Data";
 import DatePage from "./pages/Date/Date";
