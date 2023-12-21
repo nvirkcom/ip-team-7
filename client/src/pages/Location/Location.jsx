@@ -5,8 +5,9 @@ import { useEffect, useState } from "react";
 import arcteryxDarkLogo from "../../assets/logos/arcteryx-dark.svg";
 import Select from "react-select";
 
-function Location() {
+function Location({ setInfo }) {
   const [cities, setCities] = useState([]);
+  const [selectedCity, setSelectedCity] = useState();
 
   useEffect(() => {
     const getCitites = async () => {
@@ -26,9 +27,27 @@ function Location() {
   }, []);
 
   const handleLocation = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position.coords.latitude, position.coords.longitude);
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      const { lat, lng } = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+
+      const { data } = await axios(
+        `${
+          import.meta.env.VITE_OPENWEATHERAPI_API_URL
+        }/reverse?lat=${lat}&lon=${lng}&appid=${
+          import.meta.env.VITE_OPENWEATHERAPI_API_KEY
+        }`
+      );
+
+      setInfo({ city: data[0].name });
+      setSelectedCity({ label: data[0].name, value: data[0].name });
     });
+  };
+
+  const handleChange = (e) => {
+    setInfo({ city: e.value });
   };
 
   return (
@@ -45,7 +64,12 @@ function Location() {
             Current Location
           </button>
           <div className="fw-bold h1 text-uppercase">or</div>
-          <Select className="w-100" options={cities} />
+          <Select
+            className="w-100"
+            onChange={handleChange}
+            options={cities}
+            value={selectedCity}
+          />
         </div>
         <Link
           className="btn btn-lg btn-dark location__button text-uppercase w-100"
