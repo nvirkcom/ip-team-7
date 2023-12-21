@@ -6,6 +6,14 @@ import arcteryxLogo from "../../assets/logos/arcteryx.svg";
 function CallToAction({ info }) {
   const city_name = "Vancouver";
   return (
+    
+
+      <div className="album py-5 bg-light gallery">
+        <div>
+          <h1 className="display-6 text-uppercase px-3">
+            Here's a bespoke range of options for your next adventure to {city_name} <br /> ...just for you
+          </h1>
+        </div>
     <div className="album py-5 bg-light gallery">
       <div>
         <h1 className="display-6 text-uppercase">
