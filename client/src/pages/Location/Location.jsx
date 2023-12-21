@@ -48,6 +48,7 @@ function Location({ setInfo }) {
 
   const handleChange = (e) => {
     setInfo({ city: e.value });
+    setSelectedCity(e);
   };
 
   return (
