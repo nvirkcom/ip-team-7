@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
+import "./Info.scss";
 import "react-datepicker/dist/react-datepicker.css";
-import "./Date.scss";
+import DatePicker from "react-datepicker";
+import React, { useState } from "react";
 
-function DatePage() {
+function Info() {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const setCurrentDate = () => {
@@ -23,4 +23,4 @@ function DatePage() {
   );
 }
 
-export default DatePage;
+export default Info;
