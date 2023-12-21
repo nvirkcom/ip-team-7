@@ -1,0 +1,31 @@
+.info {
+  background-image: url("https://arc-cms-prod.imgix.net/content/2023-08/Tile8_32_Crop.png");
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+
+  &__container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    height: 100vh;
+    justify-content: space-between;
+  }
+
+  &__heading {
+    flex-grow: 1;
+  }
+
+  &__button {
+    &:hover {
+      background-color: black;
+      border-color: black;
+      color: white;
+    }
+  }
+
+  &__logo {
+    width: 8rem;
+  }
+}
