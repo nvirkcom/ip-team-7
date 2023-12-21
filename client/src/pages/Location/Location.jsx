@@ -1,7 +1,66 @@
 import "./Location.scss";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import arcteryxDarkLogo from "../../assets/logos/arcteryx-dark.svg";
+import Select from "react-select";
 
 function Location() {
-  return <div>Location</div>;
+  const [cities, setCities] = useState([]);
+
+  useEffect(() => {
+    const getCitites = async () => {
+      const { data } = await axios.get(
+        `${
+          import.meta.env.VITE_COUNTRIESNOW_API
+        }/countries/cities/q?country=canada`
+      );
+
+      setCities([
+        ...data.data.map((city) => {
+          return { label: city, value: city };
+        }),
+      ]);
+    };
+    getCitites();
+  }, []);
+
+  const handleLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position.coords.latitude, position.coords.longitude);
+    });
+  };
+
+  return (
+    <section className="location px-2">
+      <div className="container location__container pb-3 pt-4">
+        <p className="location__text h3 text-uppercase">
+          Where are you heading or where are you located?
+        </p>
+        <div className="align-items-center d-flex flex-column gap-4 w-100">
+          <button
+            className="btn btn-lg btn-dark location__button location__button--location text-uppercase w-100"
+            onClick={handleLocation}
+          >
+            Current Location
+          </button>
+          <div className="fw-bold h1 text-uppercase">or</div>
+          <Select className="w-100" options={cities} />
+        </div>
+        <Link
+          className="btn btn-lg btn-dark location__button text-uppercase w-100"
+          to="/info"
+        >
+          Next
+        </Link>
+        <img
+          alt="Arc'teryx logo"
+          className="location__logo"
+          src={arcteryxDarkLogo}
+        />
+      </div>
+    </section>
+  );
 }
 
 export default Location;
