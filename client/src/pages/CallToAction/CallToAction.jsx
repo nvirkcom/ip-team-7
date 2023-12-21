@@ -42,7 +42,7 @@ function CallToAction({ info }) {
                     <h5>{galleryItem.Name}</h5>
                     <div className="btn-group w-100">
                       <Link
-                        className="btn btn-sm btn-outline-secondary"
+                        className="btn btn-sm btn-dark"
                         target="_blank"
                         to={galleryItem.url}
                       >
