@@ -11,7 +11,7 @@ function CallToAction() {
 
       <div className="album py-5 bg-light gallery">
         <div>
-          <h1 className="display-6 text-uppercase">
+          <h1 className="display-6 text-uppercase px-3">
             Here's a bespoke range of options for your next adventure to {city_name} <br /> ...just for you
           </h1>
         </div>
